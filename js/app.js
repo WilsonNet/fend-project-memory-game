@@ -11,25 +11,18 @@ cardList = document.getElementsByClassName("card");
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+let idList = Array.from(cardList).map((e, i)=>i);
+/*let idList = map(cardList, i=>i);
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+idList.forEach(element => {
+    console.log(element);    
+});*/
 
-    return array;
-}
-
-//Setup
+//Add event listeners
 for (card of cardList){
-    card.cardId = "hehe";
+    idRemove = Math.floor(Math.random() * (idList.length - 1));
+    card.cardId=idList.splice(idRemove, 1)[0];
     card.addEventListener("click", (evt)=>{
-        console.log(card.teste);    
+        console.log(evt.target.cardId);    
     });
-    
 }
