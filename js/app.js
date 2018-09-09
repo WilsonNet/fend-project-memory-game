@@ -2,16 +2,17 @@
  * Create a list that holds all of your cards
  */
 cardList = document.getElementsByClassName("card");
+const TOTAL = cardList.length;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+//Global checkers
+let cardA = 0, evaluator = false;
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-let idList = Array.from(cardList).map((e, i)=>i);
+
+// Create an array with pairs
+let idList = Array.from(cardList).map((e, i)=>(i < TOTAL/2) ? i : (TOTAL - i - 1));
+
+idList.forEach(e => console.log(e));
+
 /*let idList = map(cardList, i=>i);
 
 idList.forEach(element => {
@@ -20,9 +21,14 @@ idList.forEach(element => {
 
 //Add event listeners
 for (card of cardList){
-    idRemove = Math.floor(Math.random() * (idList.length - 1));
+    idRemove = Math.floor(Math.random() * (TOTAL - 1));
     card.cardId=idList.splice(idRemove, 1)[0];
     card.addEventListener("click", (evt)=>{
-        console.log(evt.target.cardId);    
+        cardPicked = evt.target.cardId;
+        if(evaluator){
+            cardA == cardPicked;
+        }
     });
 }
+
+//complementar = total - 
