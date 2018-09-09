@@ -1,17 +1,14 @@
-/*
- * Create a list that holds all of your cards
- */
+// Create a list that holds all of your cards
 cardList = document.getElementsByClassName("card");
-const TOTAL = cardList.length;
+const TOTALCARDS = cardList.length;
 
 //Global checkers
-let cardA = 0, evaluator = false;
+let cardA = null,
+    evaluator = false;
 
 
 // Create an array with pairs
-let idList = Array.from(cardList).map((e, i)=>(i < TOTAL/2) ? i : (TOTAL - i - 1));
-
-idList.forEach(e => console.log(e));
+let idList = Array.from(cardList).map((e, i) => (i < TOTALCARDS / 2) ? i : (TOTALCARDS - i - 1));
 
 /*let idList = map(cardList, i=>i);
 
@@ -20,15 +17,38 @@ idList.forEach(element => {
 });*/
 
 //Add event listeners
-for (card of cardList){
-    idRemove = Math.floor(Math.random() * (TOTAL - 1));
-    card.cardId=idList.splice(idRemove, 1)[0];
-    card.addEventListener("click", (evt)=>{
-        cardPicked = evt.target.cardId;
-        if(evaluator){
-            cardA == cardPicked;
-        }
-    });
+for (card of cardList) {
+    idRemove = Math.floor(Math.random() * (idList.length - 1));
+    card.cardId = idList.splice(idRemove, 1)[0];
+    card.flipped = false;
+    card.addEventListener("click", flipCard);
 }
 
-//complementar = total - 
+function flipCard(evt) {
+    card.flipped = true;
+    if (!evaluator) {
+        cardA = evt.target;
+        evaluator = true;
+    } else {
+        evaluator = false;
+        if (evt.target.cardId === cardA.cardId) {
+            score();
+        } else {
+            fail();
+            evt.target.flipped = false;
+            cardA.flipped = false;
+        }
+        cardA = null;
+        evaluator = false;
+    }
+}
+
+//complementar = total -
+
+function score() {
+    console.log("você pontuou");
+}
+
+function fail() {
+    console.log("Não foi dessa vez");
+}
