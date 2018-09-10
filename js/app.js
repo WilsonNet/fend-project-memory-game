@@ -5,9 +5,6 @@
 // Timer
 // Win
 
-
-
-
 // Create a list that holds all of your cards
 cardList = document.getElementsByClassName("card");
 const TOTALCARDS = cardList.length;
@@ -16,8 +13,12 @@ const TOTALCARDS = cardList.length;
 let flippedCard = null,
     evaluator = false,
     movements = 0,
-    stars = 3;
+    stars = 3,
     points = 0;
+
+//Elements
+updateDisplay();
+
 
 
 // Create an array with pairs
@@ -44,8 +45,9 @@ for (card of cardList) {
             } else {
                 evaluator = false;
                 if (evt.target.cardId === flippedCard.cardId) {
-                    evt.targed.solved = true;
+                    evt.target.solved = true;
                     flippedCard.solved = true;
+                    points++;
                 } else {
                     fail();
                     evt.target.flipped = false;
@@ -57,23 +59,43 @@ for (card of cardList) {
     });
 }
 
-function newMove(){
-    movements +=1;
-    evaluator = false;
-    flippedCard = null;
-    rate();    
+function newMove() {
+    movements += 1;
+    updateDisplay();
+    if (points >= 8) {
+        win();
+    } else {
+        evaluator = false;
+        flippedCard = null;
+        rate();
+    }
+}
+
+function win() {}
+
+function reset() {
+    flippedCard = null,
+        evaluator = false,
+        movements = 0,
+        stars = 3;
+    points = 0;
 }
 
 function rate() {
-    if (movements <=10){
+    if (movements <= 10) {
         stars = 3;
-    } else if (movements <= 14){
+    } else if (movements <= 14) {
         stars = 2;
     } else {
         stars = 1;
     }
 }
 
+function updateDisplay() {
+    document.getElementById("stars").innerText = "Stars = " + stars;
+    document.getElementById("movements").innerText = "Movements = " + movements;
+    document.getElementById("points").innerText = "Points = " + points;
+}
 
 //complementar = total -
 
