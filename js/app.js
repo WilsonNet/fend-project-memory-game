@@ -1,5 +1,11 @@
-//Todo list
-//
+// Todo list
+// Congratulations popup
+// Restart button
+// Star Rating
+// Timer
+// Win
+
+
 
 
 // Create a list that holds all of your cards
@@ -8,7 +14,10 @@ const TOTALCARDS = cardList.length;
 
 //Global checkers
 let flippedCard = null,
-    evaluator = false;
+    evaluator = false,
+    movements = 0,
+    stars = 3;
+    points = 0;
 
 
 // Create an array with pairs
@@ -22,11 +31,10 @@ idList.forEach(element => {
 
 //Add event listeners
 for (card of cardList) {
-    idRemove = Math.floor(Math.random() * (idList.length - 1));
+    idRemove = Math.floor(Math.random() * (idList.length - 1)); //Shuffle
     card.cardId = idList.splice(idRemove, 1)[0];
     card.flipped = false;
     card.solved = false;
-    let xd = "hehe";
     card.addEventListener("click", evt => {
         if (!evt.target.solved) {
             card.flipped = true;
@@ -43,13 +51,28 @@ for (card of cardList) {
                     evt.target.flipped = false;
                     flippedCard.flipped = false;
                 }
-                flippedCard = null;
-                evaluator = false;
+                newMove();
             }
         }
     });
 }
 
+function newMove(){
+    movements +=1;
+    evaluator = false;
+    flippedCard = null;
+    rate();    
+}
+
+function rate() {
+    if (movements <=10){
+        stars = 3;
+    } else if (movements <= 14){
+        stars = 2;
+    } else {
+        stars = 1;
+    }
+}
 
 
 //complementar = total -
