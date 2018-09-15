@@ -59,6 +59,22 @@ for (card of cardList) {
     });
 }
 
+const icons = {
+    0: "diamond",
+    1: "paper-plane-o",
+    2: "anchor",
+    3: "bolt",
+    4: "cube",
+    5: "leaf",
+    6: "bycicle",
+    7: "bomb"
+}
+
+function getIcon(){
+    
+}
+
+
 function newMove() {
     movements += 1;
     updateDisplay();
@@ -71,7 +87,9 @@ function newMove() {
     }
 }
 
-function win() {}
+function win() {
+    console.log("Você venceu");
+}
 
 function reset() {
     flippedCard = null,
