@@ -10,11 +10,12 @@ cardList = document.getElementsByClassName("card");
 const TOTALCARDS = cardList.length;
 
 //Global checkers
-let flippedCard = null,
+let flippedCard = null, //Stores first card
     evaluator = false,
     movements = 0,
     stars = 3,
-    points = 0;
+    points = 0
+    lock = false;;
 
 //Elements
 updateDisplay();
@@ -37,10 +38,10 @@ for (card of cardList) {
     card.flipped = false;
     card.solved = false;
     card.addEventListener("click", evt => {
-        debug(evt);
-        if (!evt.target.solved) {
-            card.flipped = true;
-            if (!evaluator) { //If it's the first
+        if (!evt.target.flipped && !lock) {
+            flip(this.event.target);
+            //console.log(evaluator);
+            if (!evaluator) { //If it's the first card
                 flippedCard = evt.target;
                 evaluator = true;
             } else { //Else, it's the second card
@@ -49,12 +50,16 @@ for (card of cardList) {
                     evt.target.solved = true;
                     flippedCard.solved = true;
                     points++;
+                    newMove();
                 } else {
                     fail();
-                    evt.target.flipped = false;
-                    flippedCard.flipped = false;
+                    lock = true;
+                    setTimeout(()=>{
+                        flip(evt.target);
+                        flip(flippedCard);
+                        newMove();
+                    }, 1500);
                 }
-                newMove();
             }
         }
     });
@@ -70,10 +75,14 @@ const icons = [
     "bycicle",
     "bomb"
 ]
-
-function flip(xd) {
-    xd.target.classList.toggle("show");
-    xd.target.classList.toggle("open");
+/**
+ * 
+ * @param {element} card card element to be flipped
+ */
+function flip(card) {
+    card.classList.toggle("show");
+    card.classList.toggle("open");
+    card.flipped = !card.flipped;
     return icons[2];
 }
 
@@ -86,6 +95,7 @@ function newMove() {
     } else {
         evaluator = false;
         flippedCard = null;
+        lock = false;
         rate();
     }
 }
