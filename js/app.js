@@ -20,8 +20,6 @@ let flippedCard = null, //Stores first card
 //Elements
 updateDisplay();
 
-
-
 // Create an array with pairs
 let idList = Array.from(cardList).map((e, i) => (i < TOTALCARDS / 2) ? i : (TOTALCARDS - i - 1));
 
@@ -31,12 +29,27 @@ idList.forEach(element => {
     console.log(element);    
 });*/
 
+const icons = [
+    "diamond",
+    "paper-plane-o",
+    "anchor",
+    "bolt",
+    "cube",
+    "leaf",
+    "bycicle",
+    "bomb"
+]
+
 //Add event listeners
 for (card of cardList) {
     idRemove = Math.floor(Math.random() * (idList.length - 1)); //Shuffle
     card.cardId = idList.splice(idRemove, 1)[0];
     card.flipped = false;
     card.solved = false;
+    const child = card.firstElementChild;
+    const className = "fa-" + icons[card.cardId];
+    console.log(className);
+    child.classList.add(className);
     card.addEventListener("click", evt => {
         if (!evt.target.flipped && !lock) {
             flip(this.event.target);
@@ -58,23 +71,14 @@ for (card of cardList) {
                         flip(evt.target);
                         flip(flippedCard);
                         newMove();
-                    }, 1500);
+                    }, 1250);
                 }
             }
         }
     });
 }
 
-const icons = [
-    "diamond",
-    "paper-plane-o",
-    "anchor",
-    "bolt",
-    "cube",
-    "leaf",
-    "bycicle",
-    "bomb"
-]
+
 /**
  * 
  * @param {element} card card element to be flipped
