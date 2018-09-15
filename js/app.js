@@ -37,12 +37,13 @@ for (card of cardList) {
     card.flipped = false;
     card.solved = false;
     card.addEventListener("click", evt => {
+        debug(evt);
         if (!evt.target.solved) {
             card.flipped = true;
-            if (!evaluator) {
+            if (!evaluator) { //If it's the first
                 flippedCard = evt.target;
                 evaluator = true;
-            } else {
+            } else { //Else, it's the second card
                 evaluator = false;
                 if (evt.target.cardId === flippedCard.cardId) {
                     evt.target.solved = true;
@@ -59,19 +60,21 @@ for (card of cardList) {
     });
 }
 
-const icons = {
-    0: "diamond",
-    1: "paper-plane-o",
-    2: "anchor",
-    3: "bolt",
-    4: "cube",
-    5: "leaf",
-    6: "bycicle",
-    7: "bomb"
-}
+const icons = [
+    "diamond",
+    "paper-plane-o",
+    "anchor",
+    "bolt",
+    "cube",
+    "leaf",
+    "bycicle",
+    "bomb"
+]
 
-function getIcon(){
-    
+function flip(xd) {
+    xd.target.classList.toggle("show");
+    xd.target.classList.toggle("open");
+    return icons[2];
 }
 
 
