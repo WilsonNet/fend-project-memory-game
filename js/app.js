@@ -36,7 +36,7 @@ const icons = [
     "bolt",
     "cube",
     "leaf",
-    "bycicle",
+    "bicycle",
     "bomb"
 ]
 
@@ -48,7 +48,6 @@ for (card of cardList) {
     card.solved = false;
     const child = card.firstElementChild;
     const className = "fa-" + icons[card.cardId];
-    console.log(className);
     child.classList.add(className);
     card.addEventListener("click", evt => {
         if (!evt.target.flipped && !lock) {
@@ -109,11 +108,7 @@ function win() {
 }
 
 function reset() {
-    flippedCard = null,
-        evaluator = false,
-        movements = 0,
-        stars = 3;
-    points = 0;
+    location.reload();
 }
 
 function rate() {
@@ -132,7 +127,7 @@ function updateDisplay() {
     document.getElementById("points").innerText = "Points = " + points;
 }
 
-//complementar = total -
+//complementar = total
 
 function fail() {
     console.log("Não foi dessa vez");
