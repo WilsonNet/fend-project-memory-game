@@ -78,6 +78,46 @@ for (card of cardList) {
 }
 
 
+//complementar = total
+
+function fail() {
+    console.log("Não foi dessa vez");
+}
+
+/*
+button.addEventListener("click", doThings);
+
+function doThings(event, parameterA, parameterB);*/
+
+// Get the modal
+const modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+    reset(0);
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} 
+
+
+//Functions
 /**
  * 
  * @param {element} card card element to be flipped
@@ -105,6 +145,7 @@ function newMove() {
 
 function win() {
     console.log("Você venceu");
+    modal.style.display = "block";
 }
 
 function reset() {
@@ -126,14 +167,3 @@ function updateDisplay() {
     document.getElementById("movements").innerText = "Movements = " + movements;
     document.getElementById("points").innerText = "Points = " + points;
 }
-
-//complementar = total
-
-function fail() {
-    console.log("Não foi dessa vez");
-}
-
-/*
-button.addEventListener("click", doThings);
-
-function doThings(event, parameterA, parameterB);*/
