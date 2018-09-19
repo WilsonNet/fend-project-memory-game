@@ -15,7 +15,9 @@ let flippedCard = null, //Stores first card
     movements = 0,
     stars = 3,
     points = 0
-    lock = false;;
+    lock = false
+    timer = null
+    seconds = 0;
 
 //Elements
 updateDisplay();
@@ -50,6 +52,9 @@ for (card of cardList) {
     const className = "fa-" + icons[card.cardId];
     child.classList.add(className);
     card.addEventListener("click", evt => {
+        if (timer == null){
+            startTimer();
+        }
         if (!evt.target.flipped && !lock) {
             flip(this.event.target);
             //console.log(evaluator);
@@ -166,4 +171,11 @@ function updateDisplay() {
     document.getElementById("stars").innerText = "Stars = " + stars;
     document.getElementById("movements").innerText = "Movements = " + movements;
     document.getElementById("points").innerText = "Points = " + points;
+}
+
+function startTimer(){
+    setInterval(()=>{
+        seconds++;
+        document.getElementById("timer").innerText = "Seconds = " + seconds;
+    }, 1000);
 }
