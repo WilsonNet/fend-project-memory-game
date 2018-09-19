@@ -13,13 +13,14 @@ const TOTALCARDS = cardList.length;
 let flippedCard = null, //Stores first card
     evaluator = false,
     movements = 0,
-    stars = 3,
-    points = 0
-    lock = false
-    timer = null
+    points = 0,
+    lock = false,
+    timer = null,
     seconds = 0;
 
 //Elements
+
+const starsP = document.querySelector(".stars");
 updateDisplay();
 
 // Create an array with pairs
@@ -158,17 +159,18 @@ function reset() {
 }
 
 function rate() {
-    if (movements <= 10) {
-        stars = 3;
-    } else if (movements <= 14) {
-        stars = 2;
-    } else {
-        stars = 1;
+    if (movements == 11) {
+        starsP.children[2].classList.toggle("minus-score");
+    }
+    if (movements == 16) {
+        starsP.children[1].classList.toggle("minus-score");
+    }
+    if (movements == 20) {
+        starsP.children[0].classList.toggle("minus-score");
     }
 }
 
 function updateDisplay() {
-    document.getElementById("stars").innerText = "Stars = " + stars;
     document.getElementById("movements").innerText = "Movements = " + movements;
     document.getElementById("points").innerText = "Points = " + points;
 }
