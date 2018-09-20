@@ -71,7 +71,6 @@ for (card of cardList) {
                     points++;
                     newMove();
                 } else {
-                    //fail();
                     lock = true;
                     setTimeout(()=>{
                         flip(evt.target);
@@ -87,32 +86,12 @@ for (card of cardList) {
 resetButton.addEventListener('click', reset);
 
 
-//complementar = total
-
-/* function fail() {
-    console.log("Não foi dessa vez");
-} */ 
-
-
-
-/*
-button.addEventListener("click", doThings);
-
-function doThings(event, parameterA, parameterB);*/
-
 // Get the modal
 const modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-const btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -180,7 +159,6 @@ function updateDisplay() {
 }
 
 function startTimer(){
-    console.log("aaa");
     timer = setInterval(()=>{
         document.querySelector(".timer").innerText = ++ seconds;
     }, 1000);
