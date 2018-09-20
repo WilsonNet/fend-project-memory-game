@@ -1,8 +1,8 @@
 // Create a list that holds all of your cards
-cardList = document.getElementsByClassName("card");
+const cardList = document.getElementsByClassName('card');
 const TOTALCARDS = cardList.length;
 
-//Global checkers
+//Working variables
 let flippedCard = null, //Stores first card
     evaluator = false,
     movements = 0,
@@ -11,49 +11,47 @@ let flippedCard = null, //Stores first card
     points = 0,
     seconds = 0;
 
-//Elements
+//Get elements
 
-const resetButton = document.querySelector(".restart")
-const starsP = document.querySelector(".stars");
+const modal = document.getElementById('myModal');
+const playAgain = document.getElementsByClassName('playAgain')[0];
+const resetButton = document.querySelector('.restart')
+const starsP = document.querySelector('.stars');
+
 updateDisplay();
 
 // Create an array with pairs
 let idList = Array.from(cardList).map((e, i) => (i < TOTALCARDS / 2) ? i : (TOTALCARDS - i - 1));
 
-/*let idList = map(cardList, i=>i);
 
-idList.forEach(element => {
-    console.log(element);    
-});*/
-
+//Icons used to play the game
 const icons = [
-    "diamond",
-    "paper-plane-o",
-    "anchor",
-    "bolt",
-    "cube",
-    "leaf",
-    "bicycle",
-    "bomb"
-]
+    'diamond',
+    'paper-plane-o',
+    'anchor',
+    'bolt',
+    'cube',
+    'leaf',
+    'bicycle',
+    'bomb'
+];
 
-//Add event listeners to cards
-for (card of cardList) {
-    idRemove = Math.floor(Math.random() * (idList.length - 1)); //Shuffle
-    card.cardId = idList.splice(idRemove, 1)[0];
+//Event listeners
+for (let card of cardList) {
+    let idRemove = Math.floor(Math.random() * (idList.length - 1)); //Shuffle
+    card.cardId = idList.splice(idRemove, 1)[0]; //Remove from array and return the right ID
     card.flipped = false;
     card.solved = false;
     const child = card.firstElementChild;
-    const className = "fa-" + icons[card.cardId];
+    const className = 'fa-' + icons[card.cardId];
     child.classList.add(className);
-    card.addEventListener("click", evt => {
-        console.log(timer);
+    card.addEventListener('click', evt => {
         if (timer == null){
             startTimer();
         }
         if (!evt.target.flipped && !lock) {
             flip(this.event.target);
-            if (!evaluator) { //If it's the first card
+            if (!evaluator) { //If it's the first card of the turn
                 flippedCard = evt.target;
                 evaluator = true;
             } else { //Else, it's the second card
@@ -64,8 +62,8 @@ for (card of cardList) {
                     points++;
                     newMove();
                 } else {
-                    lock = true;
-                    setTimeout(()=>{
+                    lock = true; 
+                    setTimeout(()=>{ //
                         flip(evt.target);
                         flip(flippedCard);
                         newMove();
@@ -76,16 +74,11 @@ for (card of cardList) {
     });
 }
 
+
 resetButton.addEventListener('click', reset);
 
-const modal = document.getElementById('myModal');
-
-const playAgain = document.getElementsByClassName("playAgain")[0];
-
-
 playAgain.onclick = function() {
-    modal.style.display = "none";
-    console.log("xd");
+    modal.style.display = 'none';
     reset(0);
 }
 
@@ -93,8 +86,8 @@ playAgain.onclick = function() {
 //Functions
 
 function flip(card) {
-    card.classList.toggle("show");
-    card.classList.toggle("open");
+    card.classList.toggle('show');
+    card.classList.toggle('open');
     card.flipped = !card.flipped;
     return icons[2];
 }
@@ -114,32 +107,37 @@ function newMove() {
     }
 }
 
+//Win the game and display the modal
 function win() {
-    modal.style.display = "block";
+    modal.style.display = 'block';
 }
 
+//Reset the game (just refresh the page)
 function reset() {
     location.reload();
 }
 
+//Set the stars for the score
 function rate() {
     if (movements == 11) {
-        starsP.children[2].classList.toggle("minus-score");
+        starsP.children[2].classList.toggle('minus-score');
     }
     if (movements == 16) {
-        starsP.children[1].classList.toggle("minus-score");
+        starsP.children[1].classList.toggle('minus-score');
     }
     if (movements == 20) {
-        starsP.children[0].classList.toggle("minus-score");
+        starsP.children[0].classList.toggle('minus-score');
     }
 }
 
+//Update the HUD (just the moves counter)
 function updateDisplay() {
-    document.querySelector(".moves").innerText = movements;
+    document.querySelector('.moves').innerText = movements;
 }
 
+//Starts the timer and update the DOM.
 function startTimer(){
     timer = setInterval(()=>{
-        document.querySelector(".timer").innerText = ++ seconds;
+        document.querySelector('.timer').innerText = ++ seconds;
     }, 1000);
 }
