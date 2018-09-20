@@ -15,6 +15,7 @@ let flippedCard = null, //Stores first card
     movements = 0,
     lock = false,
     timer = null,
+    points = 0,
     seconds = 0;
 
 //Elements
