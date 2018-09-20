@@ -13,13 +13,13 @@ const TOTALCARDS = cardList.length;
 let flippedCard = null, //Stores first card
     evaluator = false,
     movements = 0,
-    points = 0,
     lock = false,
     timer = null,
     seconds = 0;
 
 //Elements
 
+const resetButton = document.querySelector(".restart")
 const starsP = document.querySelector(".stars");
 updateDisplay();
 
@@ -43,7 +43,7 @@ const icons = [
     "bomb"
 ]
 
-//Add event listeners
+//Add event listeners to cards
 for (card of cardList) {
     idRemove = Math.floor(Math.random() * (idList.length - 1)); //Shuffle
     card.cardId = idList.splice(idRemove, 1)[0];
@@ -58,7 +58,6 @@ for (card of cardList) {
         }
         if (!evt.target.flipped && !lock) {
             flip(this.event.target);
-            //console.log(evaluator);
             if (!evaluator) { //If it's the first card
                 flippedCard = evt.target;
                 evaluator = true;
@@ -70,7 +69,7 @@ for (card of cardList) {
                     points++;
                     newMove();
                 } else {
-                    fail();
+                    //fail();
                     lock = true;
                     setTimeout(()=>{
                         flip(evt.target);
@@ -83,12 +82,16 @@ for (card of cardList) {
     });
 }
 
+resetButton.addEventListener('click', reset);
+
 
 //complementar = total
 
-function fail() {
+/* function fail() {
     console.log("Não foi dessa vez");
-}
+} */ 
+
+
 
 /*
 button.addEventListener("click", doThings);
@@ -171,8 +174,7 @@ function rate() {
 }
 
 function updateDisplay() {
-    document.getElementById("movements").innerText = "Movements = " + movements;
-    document.getElementById("points").innerText = "Points = " + points;
+    document.querySelector(".moves").innerText = movements;
 }
 
 function startTimer(){
