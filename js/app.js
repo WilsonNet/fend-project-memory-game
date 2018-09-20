@@ -80,11 +80,12 @@ resetButton.addEventListener('click', reset);
 
 const modal = document.getElementById('myModal');
 
-const playAgain = document.getElementsByClassName("restart")[0];
+const playAgain = document.getElementsByClassName("playAgain")[0];
 
 
 playAgain.onclick = function() {
     modal.style.display = "none";
+    console.log("xd");
     reset(0);
 }
 
@@ -114,7 +115,6 @@ function newMove() {
 }
 
 function win() {
-    console.log("Você venceu");
     modal.style.display = "block";
 }
 

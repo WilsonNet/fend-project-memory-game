@@ -140,20 +140,22 @@ h1 {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
+    font-size: 44px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
-.restart {
-    color: #aaa;
+.playAgain {
+    color: white;
+    background-color: #02b3e4;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.restart:hover,
-.restart:focus {
+.playAgain:hover,
+.playAgain:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
