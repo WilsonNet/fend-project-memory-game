@@ -1,10 +1,3 @@
-// Todo list
-// Congratulations popup
-// Restart button
-// Star Rating
-// Timer
-// Win
-
 // Create a list that holds all of your cards
 cardList = document.getElementsByClassName("card");
 const TOTALCARDS = cardList.length;
@@ -85,33 +78,19 @@ for (card of cardList) {
 
 resetButton.addEventListener('click', reset);
 
-
-// Get the modal
 const modal = document.getElementById('myModal');
 
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+const playAgain = document.getElementsByClassName("restart")[0];
 
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+playAgain.onclick = function() {
     modal.style.display = "none";
     reset(0);
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-} 
-
 
 //Functions
-/**
- * 
- * @param {element} card card element to be flipped
- */
+
 function flip(card) {
     card.classList.toggle("show");
     card.classList.toggle("open");
@@ -119,6 +98,7 @@ function flip(card) {
     return icons[2];
 }
 
+//Stats maintenance for each turn
 
 function newMove() {
     movements += 1;
