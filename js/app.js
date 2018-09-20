@@ -54,6 +54,7 @@ for (card of cardList) {
     const className = "fa-" + icons[card.cardId];
     child.classList.add(className);
     card.addEventListener("click", evt => {
+        console.log(timer);
         if (timer == null){
             startTimer();
         }
@@ -179,8 +180,8 @@ function updateDisplay() {
 }
 
 function startTimer(){
-    setInterval(()=>{
-        seconds++;
-        document.getElementById("timer").innerText = "Seconds = " + seconds;
+    console.log("aaa");
+    timer = setInterval(()=>{
+        document.querySelector(".timer").innerText = ++ seconds;
     }, 1000);
 }
