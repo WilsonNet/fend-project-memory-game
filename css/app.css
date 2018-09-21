@@ -164,9 +164,9 @@ h1 {
 
 /* Media queries*/
 
-@media (max-width: 800px) {
+@media (max-width: 620px) {
     .deck {
-        padding: 28px;
+        padding: 22px;
     }
     .deck .card {
         height: 110px;
@@ -174,7 +174,7 @@ h1 {
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 545px) {
     .deck {
         padding: 14px;
     }
@@ -184,9 +184,9 @@ h1 {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 450px) {
     .deck {
-        padding: 22px;
+        padding: 10px;
     }
     .deck .card {
         height: 80px;
@@ -194,7 +194,11 @@ h1 {
     }
 }
 
-@media (max-width: 420px) {
+
+@media (max-width: 370px) {
+    .deck {
+        padding: 5px;
+    }
     .deck .card {
         height: 65px;
         width: 65px;
