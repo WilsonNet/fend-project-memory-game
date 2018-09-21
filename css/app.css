@@ -184,9 +184,9 @@ h1 {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 460px) {
     .deck {
-        padding: 22px;
+        padding: 10px;
     }
     .deck .card {
         height: 80px;
@@ -194,7 +194,7 @@ h1 {
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 300px) {
     .deck .card {
         height: 65px;
         width: 65px;
