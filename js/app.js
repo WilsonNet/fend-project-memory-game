@@ -109,6 +109,7 @@ function newMove() {
 
 //Win the game and display the modal
 function win() {
+    clearInterval(timer);
     modal.style.display = 'block';
 }
 
