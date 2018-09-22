@@ -62,6 +62,8 @@ for (let card of cardList) {
                 if (evt.target.cardId === flippedCard.cardId) {
                     evt.target.solved = true;
                     flippedCard.solved = true;
+                    evt.target.classList.add("match");
+                    flippedCard.classList.add("match");
                     points++;
                     newMove();
                 } else {
@@ -119,8 +121,6 @@ function win() {
     spClone.style.width = "80%";
     spClone.style.fontSize= "4vw";    
     modalContent.insertBefore(spClone, modalContent.lastElementChild);
-    
-    
 }
 
 //Reset the game (just refresh the page)
