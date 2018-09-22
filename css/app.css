@@ -165,6 +165,9 @@ h1 {
 /* Media queries*/
 
 @media (max-width: 620px) {
+    .score-panel {
+        width: 300px;
+    }
     .deck {
         padding: 22px;
     }
@@ -175,6 +178,9 @@ h1 {
 }
 
 @media (max-width: 545px) {
+    .score-panel {
+        width: 280px;
+    }
     .deck {
         padding: 14px;
     }
@@ -185,6 +191,9 @@ h1 {
 }
 
 @media (max-width: 450px) {
+    .score-panel {
+        width: 250px;
+    }
     .deck {
         padding: 10px;
     }
