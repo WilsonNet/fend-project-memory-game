@@ -14,9 +14,12 @@ let flippedCard = null, //Stores first card
 //Get elements
 
 const modal = document.getElementById('myModal');
+const modalContent = modal.firstElementChild;
 const playAgain = document.getElementsByClassName('playAgain')[0];
 const resetButton = document.querySelector('.restart')
 const starsP = document.querySelector('.stars');
+const scorePanel = document.querySelector('.score-panel');
+
 
 updateDisplay();
 
@@ -111,6 +114,13 @@ function newMove() {
 function win() {
     clearInterval(timer);
     modal.style.display = 'block';
+    const spClone = scorePanel.cloneNode(true);
+    spClone.lastElementChild.remove();
+    spClone.style.width = "80%";
+    spClone.style.fontSize= "4vw";    
+    modalContent.insertBefore(spClone, modalContent.lastElementChild);
+    
+    
 }
 
 //Reset the game (just refresh the page)
