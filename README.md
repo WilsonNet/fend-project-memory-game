@@ -22,8 +22,8 @@ Or you can play an online version on https://wilsonnet.github.io/memory-game/
 ## How to play
 
 1. Click on a card to reaveal it.
-2. Click on another card.
-3. See the result
-..* If it's a match (both flipped cards are the same) you did something right.
-..* If it's not a match, try to get a match next time.
-4. Repeat until all the cards are matched.
+1. Click on another card.
+1. See the result
+   * If it's a match (both flipped cards are the same) you did something right.
+   * If it's not a match, try to get a match next time.
+1. Repeat until all the cards are matched.
